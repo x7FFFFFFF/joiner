@@ -10,8 +10,8 @@
     <packaging>jar</packaging>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.target>11</maven.compiler.target>
-        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
         <antlr4test-maven-plugin.version>1.22</antlr4test-maven-plugin.version>
         <antlr.version>4.12.0</antlr.version>
         <junit.version>4.13.2</junit.version>
@@ -36,58 +36,29 @@
                 <groupId>org.antlr</groupId>
                 <artifactId>antlr4-maven-plugin</artifactId>
                 <version>${antlr.version}</version>
-                <configuration>
-                    <outputDirectory>${project.build.directory}/classes/com/github/x7FFFFFFF/antlr</outputDirectory>
-                    <sourceDirectory>${basedir}</sourceDirectory>
-                    <includes>
-                        <include>SQLiteLexer.g4</include>
-                        <include>SQLiteParser.g4</include>
-                    </includes>
-                    <visitor>true</visitor>
-                    <listener>true</listener>
-                    <arguments>
-                        <argument>-package</argument>
-                        <argument>com.github.x7FFFFFFF.joiner.antlr4</argument>
-                    </arguments>
-                </configuration>
                 <executions>
                     <execution>
+                        <id>antlr</id>
                         <goals>
                             <goal>antlr4</goal>
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <arguments>
+                        <argument>-package</argument>
+                        <argument>com.github.x7FFFFFFF.joiner.antlr4</argument>
+                    </arguments>
+                </configuration>
             </plugin>
-<!--            <plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.11.0</version>
                 <configuration>
-                    <compilerArguments>
-                        <endorseddirs>${project.build.directory}/generated-sources/com/github.x7FFFFFFF.joiner.antlr4antlr4</endorseddirs>
-                    </compilerArguments>
+                    <source>14</source>
+                    <target>14</target>
                 </configuration>
-            </plugin>-->
-            <!--<plugin>
-                <groupId>com.khubla.antlr</groupId>
-                <artifactId>antlr4test-maven-plugin</artifactId>
-                <version>${antlr4test-maven-plugin.version}</version>
-                <configuration>
-                    <verbose>false</verbose>
-                    <showTree>false</showTree>
-                    <entryPoint>parse</entryPoint>
-                    <grammarName>SQLite</grammarName>
-                    <packageName></packageName>
-                    <exampleFiles>examples/</exampleFiles>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>test</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>-->
+            </plugin>
         </plugins>
     </build>
 </project>
